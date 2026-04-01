@@ -7,6 +7,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +34,8 @@ public class PedidoDto {
     @Enumerated(EnumType.STRING)
     private Status status;
     private BigDecimal valorTotal;
+
+    @NotEmpty(message = "Pedido deve ter pelo menos um item")
     private List<@Valid ItemDoPedidoDto> itens = new ArrayList<>();
 
     public PedidoDto(Pedido pedido) {
